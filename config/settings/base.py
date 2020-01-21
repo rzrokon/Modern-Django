@@ -15,9 +15,13 @@ import environ
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 ROOT_DIR = environ.Path(__file__) - 3
 APPS_DIR = ROOT_DIR.path('project')
+
+
 env = environ.Env()
+
 # This section added from an update to standards in CookieCutter Django to ensure no errors are encountered at runserver/migrations
 READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
+
 if READ_DOT_ENV_FILE:
     env_file = str(ROOT_DIR.path('.env'))
     print('Loading : {}'.format(env_file))
@@ -90,6 +94,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(ROOT_DIR.path('db.sqlite3')),
         'NAME': str(ROOT_DIR.path('db.sqlite3')),
     }
 }
